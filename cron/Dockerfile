@@ -23,6 +23,7 @@ WORKDIR /usr/scheduler
 
 # Copy files
 COPY api.py .
+COPY update_actives.py .
 COPY crontab.* ./
 COPY start.sh .
 COPY requirements.txt ./requirements.txt

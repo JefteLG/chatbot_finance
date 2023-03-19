@@ -18,15 +18,19 @@ try:
     database = mongodb_client.get_default_database()
     collection = database.users
     users_id = collection.find().distinct("_id")
+    rastrio_notificação = collection.find_one({"_id": "active"})
 
     for user in users_id:
-        data = {"name": "rastreio"}
-        r = requests.post(
-            f"http://rasa:5005/conversations/{user}/trigger_intent",
-            json=data)
-        logger.info(f"Endpoint: {r.url}")
-        logger.info(f"Status da requisição {r.status_code}")
-        logger.info(f"conteudo da requisição {r.content}")
-        logger.info(f"Tempo: {datetime.now().strftime('%H:%M:%S')}")
+        if collection.find_one({"_id": user}).get("notificacao_rastreio"):
+            data = {"name": "rastreio"}
+            r = requests.post(
+                    f"http://rasa:5005/conversations/{user}/trigger_intent",
+                    json=data
+                )
+            r.ti
+            logger.info(f"Endpoint: {r.url}")
+            logger.info(f"Status da requisição {r.status_code}")
+            logger.info(f"Tempo: {datetime.now().strftime('%H:%M:%S.%f')}")
+            logger.info("==================================================================================")
 except Exception:
     traceback.print_exc()
