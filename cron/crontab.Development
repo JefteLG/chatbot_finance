@@ -1,4 +1,5 @@
-* * * * * /usr/scheduler/api.py 2>&1 | tee -a /var/log/cron.log
-# */5 * * * * /usr/scheduler/api.py 2>&1 | tee -a /var/log/cron.log => a cada 5 minutos
+# * * * * * /usr/scheduler/api.py 2>&1 | tee -a /var/log/cron.log => a cada 1 minutos
+*/5 * * * * /usr/scheduler/api.py 2>&1 | tee -a /var/log/cron.log
+*/3 * * * * /usr/scheduler/update_actives.py 2>&1 | tee -a /var/log/cron.log
 # 0 8 * * 1-5 /usr/scheduler/api.py 2>&1 | tee -a /var/log/cron.log => todos os dia as 08:00 de segunda a sexta
 # Single container cron example

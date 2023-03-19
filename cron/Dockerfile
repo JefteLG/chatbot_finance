@@ -16,13 +16,14 @@ RUN apk add --update --no-cache python3 && ln -sf python3 /usr/bin/python
 RUN python3 -m ensurepip --upgrade
 ENV PYTHONUNBUFFERED=1
 
-# install any Python requirements used by the jobs
-RUN pip3 install colorama
+# # install any Python requirements used by the jobs
+# RUN pip3 install colorama
 
 WORKDIR /usr/scheduler
 
 # Copy files
 COPY api.py .
+COPY update_actives.py .
 COPY crontab.* ./
 COPY start.sh .
 COPY requirements.txt ./requirements.txt
@@ -43,4 +44,5 @@ RUN find . -type f -iname "*.py" -exec chmod +x {} \;
 RUN touch /var/log/cron.log
 
 # Run cron on container startup
+RUN chmod +x ./start.sh
 CMD ["./start.sh"]
