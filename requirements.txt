@@ -1,0 +1,3 @@
+-r ./actions/requirements.txt
+-r ./web_scraping/requirements.txt
+rasa==3.4
