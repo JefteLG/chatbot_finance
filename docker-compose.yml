@@ -1,0 +1,55 @@
+version: "3"
+
+services:
+  rasa:
+    container_name: rasa
+    build: ./rasa
+    ports:
+      - 5005:5005
+    depends_on:
+      - actions
+    volumes:
+      - ./rasa/:/app/
+
+  actions:
+    container_name: actions
+    build:
+      context: ./actions
+    ports:
+      - 5055:5055
+    volumes:
+      - ./actions/:/app/actions/
+
+  web_scraping:
+    container_name: web_scraping
+    build: ./web_scraping
+    ports:
+      - 80:80
+    depends_on:
+      - mongodb
+    volumes:
+      - ./web_scraping/:/code/
+
+  mongodb:
+    container_name: mongodb
+    image: mongo:6.0
+    ports:
+      - 27017:27017
+    volumes:
+      - ./mongo_backup:/data/db
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=user
+      - MONGO_INITDB_ROOT_PASSWORD=tst123
+      - MONGO_INITDB_DATABASE=bot_invest
+
+  cron:
+    container_name: cron
+    build: ./cron
+    depends_on:
+      - rasa
+    volumes:
+      - ./cron:/app/
+
+networks:
+  bot_invest:
+    driver: bridge
