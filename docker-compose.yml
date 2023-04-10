@@ -6,6 +6,9 @@ services:
     build: ./rasa
     ports:
       - 5005:5005
+    env_file: ./rasa/.env
+    environment:
+      - ENV=local
     depends_on:
       - actions
     volumes:
@@ -17,6 +20,9 @@ services:
       context: ./actions
     ports:
       - 5055:5055
+    env_file: ./actions/.env
+    environment:
+      - ENV=local
     volumes:
       - ./actions/:/app/actions/
 
@@ -25,6 +31,9 @@ services:
     build: ./web_scraping
     ports:
       - 80:80
+    env_file: ./web_scraping/.env
+    environment:
+      - ENV=local
     depends_on:
       - mongodb
     volumes:
@@ -47,6 +56,9 @@ services:
     build: ./cron
     depends_on:
       - rasa
+    env_file: ./cron/.env
+    environment:
+      - ENV=local
     volumes:
       - ./cron:/app/
 

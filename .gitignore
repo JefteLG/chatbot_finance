@@ -1,5 +1,11 @@
+#mongo
+mongo_backup/
+
 # Rasa
-models
+rasa/models
+.config
+.keras
+.rasa
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

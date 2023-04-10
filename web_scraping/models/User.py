@@ -21,7 +21,7 @@ class User(BaseModel):
                         },
                         "PETR4" : {
                             "valor" : 31.0,
-                            "status" : "acima"
+                            "status" : "abaixo"
                         }
                     }
             }

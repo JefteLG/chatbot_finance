@@ -26,6 +26,9 @@ COPY api.py .
 COPY update_actives.py .
 COPY crontab.* ./
 COPY start.sh .
+COPY .env .
+COPY config.py .
+COPY utils.py .
 COPY requirements.txt ./requirements.txt
 
 # Install requirements
