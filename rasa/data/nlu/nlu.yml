@@ -1,0 +1,152 @@
+version: "3.1"
+
+nlu:
+- intent: saudar
+  examples: |
+    - Iae
+    - e aí
+    - Oi, tudo bem?
+    - Oieee
+    - dale
+    - e ai
+    - eae
+    - eai
+    - hello
+    - hey
+    - hi
+    - oi
+    - oieee
+    - olá
+    - opa
+    - bom dia
+    - boa tarde
+    - boa noite
+- intent: noticia
+  examples: |
+    - noticia
+    - quero noticias
+    - noticias de hoje
+    - como estão as noticias de hoje?
+    - noticias sobre o BARI11
+    - como está as ações da petrobras?
+    - que atualizações de hoe
+    - quais as boas novas?
+    - notícias
+    - como estão as Notícias?
+- intent: ajuda
+  examples: |
+    - ajuda
+    - preciso de ajuda
+    - o que você faz
+    - pode me ajudar?
+    - não sei o que fazer
+    - consegue me ajudar?
+    - o que é voce?
+    - me ajude
+    - me explique o que é voce
+    - me diga o que voce faz
+    - poderia me ajudar?
+- intent: afirmar
+  examples: |
+    - Quero
+    - Sim
+    - claro
+    - concerteza
+    - ok
+    - pode ser
+    - positivo
+    - quero
+    - s
+    - si
+    - ss
+    - uhum
+    - sim,
+    - sim, faz
+    - faz sim
+- intent: negar
+  examples: |
+    - N
+    - Negativo
+    - Nem
+    - Não
+    - Não obrigado
+    - n
+    - n quero
+    - no
+    - nop
+    - não
+    - não continuar
+    - não quero
+    - ainda não
+    - não faz
+    - faz não
+- intent: valor_ativo
+  examples: |
+    - Quero ficar por dentro das últimas movimentações nos fundos imobiliários
+    - Valor do ativo
+    - Qual o valor das ações?
+    - Quero saber o valor dos FIIs
+    - preço das ações
+    - preço dos ativos
+    - Quais são os valores das ações?
+    - Como está o valor das ações hoje?
+    - O preço das ações subiu ou caiu?
+    - Poderia me informar a cotação das ações?
+    - Qual é o valor atual das ações?
+    - As ações tiveram uma queda ou um aumento?
+    - Estou interessado em saber o valor de mercado das ações.
+    - Como as ações estão se saindo hoje? 
+    - Qual é o valor atual dos fundos imobiliários?
+    - Como está a cotação dos fundos imobiliários hoje?
+    - O preço dos fundos imobiliários subiu ou caiu?
+    - Os fundos imobiliários tiveram uma queda ou um aumento?
+    - Como os fundos imobiliários estão se saindo hoje?
+- intent: menu
+  examples: |
+    - menu
+    - menu principal
+    - voltar ao menu principal
+    - inicio
+    - voltar ao inicio
+    - ir para o início
+    - mostrar o menu principal
+    - menu inicial
+- intent: gerenciar_notificacao
+  examples: |
+    - Gostaria de receber notificações
+    - Ativar notificações
+    - Por favor, envie-me notificações
+    - Quero receber alertas
+    - Quero ser notificado
+    - Por favor, envie-me alertas 
+    - Gostaria de ser notificado
+    - Por favor, pare de enviar notificações
+    - Quero desativar as notificações
+    - Não quero receber mais alertas
+    - Desativar notificações
+    - Cancelar minhas notificações
+    - Não me envie mais atualizações
+    - Quero parar de receber notificações
+    - Desligar alertas de novidades
+    - Por favor, pare de me enviar notificações
+    - Desejo desativar as notificações
+- intent: rastrear_ativos
+  examples: |
+    - Gostaria de adicionar fundos de investimentos
+    - adicionvar fundos imobiliarios
+    - Quero rastrear meus fundos de investimentos
+    - rastreamento de fundos de investimentos
+    - rastrear meus fundos de investimentos
+    - Gostaria de rastrear fundos imobiliários para acompanhar seu desempenho
+    - Quero rastrear ativos financeiros em tempo real
+    - Gostaria de saber como rastrear ativos de uma determinada empresa
+    - Estou interessado em rastrear ativos digitais
+    - Preciso de ajuda para rastrear os ativos da minha carteira de investimentos
+    - Gostaria de saber como rastrear ativos
+    - Estou buscando informações sobre como rastrear ativos de empresas
+    - Quero remover ativos
+    - Preciso de ajuda para remover ativos tóxicos do meu portfólio
+    - Quero excluir ativos
+    - Gostaria de excluir os arquivos cadastrados
+    - como faço para editar os ativos?
+    - editar os fundos imobiliarios

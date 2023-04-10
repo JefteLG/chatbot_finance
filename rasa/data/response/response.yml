@@ -1,0 +1,323 @@
+version: "3.1"
+
+responses:
+  utter_saudar_1:
+  - text: "
+      *Olá, Bem vindo!!* 👋
+      \n
+      \nSou um assistente de investimento em ações e fundos de investimentos imobiliários (FII), 
+      não tenho o objetivo de fazer sugestão de compra ou venda de ativos, sendo assim, 
+      não me responsabilizo pelas decisões e caminhos tomados a partir das informações aqui apresentadas.
+      "
+
+  utter_saudar_2:
+  - text: "Escolha uma das opções abaixo para que eu possa te ajudar:"
+    buttons:
+      - title: "Rastrear Ativos"
+        payload: "/rastrear_ativos"
+      - title: "Preço dos Ativos"
+        payload: "/valor_ativo"
+      - title: "Notícias"
+        payload: "/noticia"
+      - title: "Ajuda"
+        payload: "/ajuda"
+    button_type: vertical
+
+  utter_saudar_novamente:
+  - text: "
+      *Bem vindo de volta!!* 😃
+      \n
+      \nEscolha uma das opções abaixo para que eu possa te ajudar:
+      "
+    buttons:
+      - title: "Rastrear Ativos"
+        payload: "/rastrear_ativos"
+      - title: "Preço dos Ativos"
+        payload: "/valor_ativo"
+      - title: "Notícias"
+        payload: "/noticia"
+      - title: "Ajuda"
+        payload: "/ajuda"
+    button_type: vertical
+
+  utter_ajuda_1:
+    - text: "
+        Sou um assistente de investimento em ações e fundos de investimentos
+        imobiliários(FII), não tenho o objetivo de fazer sugestão de compra
+        ou venda de ativos, sendo assim, não me responsabilizo pelas decisões
+        e caminhos tomados a partir das informações aqui apresentadas.
+        \n
+        \n*Consigo ajudar você das seguintes formas:*
+        \n
+        \n*Preço das ações e fundos de investimentos imobiliários (FII) em tempo real:*
+        \nCom isso você pode ver os preços das ações e FII em tempo real
+        \n
+        \n*Notícias sobre o mercado financeiro:*
+        \nVocê consegue pesquisar as notícias relacionadas as ações e FII do seu interesse.
+        \n
+        \n*Rastrear o preço de uma ação e/ou FII especifico:*
+        \nUtilizando o rastreamento do valor da ação e/ou FII você pode definir um preço
+        e o chatbot vai notificar quando a ação chegar no preço desejado.
+        \n*Obs.: O chatbot confere o preço da ação a cada 5 minutos.*
+        "
+
+  utter_ajuda_2:
+    - text: "Escolha uma das opções abaixo para que eu possa te ajudar:"
+      buttons:
+        - title: "Rastrear Ativos"
+          payload: "/rastrear_ativos"
+        - title: "Preço dos Ativos"
+          payload: "/valor_ativo"
+        - title: "Notícias"
+          payload: "/noticia"
+      button_type: vertical
+
+  utter_ajuda_feature_nao_implementada:
+    - text: "
+        Relatórios diários:
+        \n
+        Por padrão isso já vem configurado. De segunda a sexta você recebe um relatório referente
+        ao valor máximo, mínimo e fechamento das ações que você pediu para o chatbot rastrear.
+        \n
+        \nObs.: Para desativar o relatório diário basta informar que deseja desativa-lo.
+        "
+
+  utter_ajuda_6:
+  - text: "Escolha uma da opções abaixo para que eu possa te ajudar:"
+    buttons:
+      - title: "Rastrear ativos"
+        payload: "/rastrear_ativos"
+      - title: "Preço dos ativos"
+        payload: "/valor_ativo"
+      - title: "Notícias"
+        payload: "/noticia"
+    button_type: vertical
+
+  utter_news:
+  - text: "Vou buscar até 3 notícias relevantes dos últimos 14 dias sobre o tema que você desejar."
+
+  utter_ask_news:
+  - text: "Informe o nome do ativo ou o assunto que você deseja pesquisar."
+
+  utter_news_reponse_1:
+  - text: "Notícias referente a *{news}*:"
+
+  utter_news_reponse_2:
+  - text: "
+      *Titulo da Notícia:* {title}
+      \n
+      \n*Fonte:* {source}
+      \n
+      \n*Data:* {date}
+      \n
+      \n*Link:* {link}
+      "
+  
+  utter_news_response_none:
+  - text: "Não encontrei nenhuma noticia referente ao assunto *{news}*. Deseja pesquisar novamente?"
+    buttons:
+      - title: "Sim"
+        payload: "/afirmar"
+      - title: "Não"
+        payload: "/negar"
+    button_type: vertical
+
+  utter_active:
+  - text: "
+      Todas as informações apresentadas tem caráter informativo e são provenientes 
+      de fontes públicas e confiáveis como *Yahoo Finance* (https://finance.yahoo.com).
+      "
+
+  utter_ask_active:
+  - text: "
+      Informe a o nome do ativo que deseja saber o valor:
+      \n
+      \n*Ex.: MXRF11... PETR4.*
+      "
+
+  utter_active_response:
+  - text: "O valor do ativo *{active}* é R$ *{response}*. Deseja continuar pesquisando por ativos?"
+    buttons:
+      - title: "Sim"
+        payload: "/afirmar"
+      - title: "Não"
+        payload: "/negar"
+    button_type: vertical
+
+  utter_active_response_none:
+  - text: "Não encontrei o valor do ativo *{active}*. Deseja continuar pesquisando por ativos?"
+    buttons:
+      - title: "Sim"
+        payload: "/afirmar"
+      - title: "Não"
+        payload: "/negar"
+    button_type: vertical
+
+  utter_menu:
+  - text: "Escolha uma das opções abaixo para que eu possa te ajudar:"
+    buttons:
+      - title: "Rastrear ativos"
+        payload: "/rastrear_ativos"
+      - title: "Preço dos ativos"
+        payload: "/valor_ativo"
+      - title: "Notícias"
+        payload: "/noticia"
+      - title: "Ajuda"
+        payload: "/ajuda"
+    button_type: vertical
+
+  utter_menu_ativos:
+  - text: "O que você desejar fazer no rastreio de ativos?"
+    buttons:
+      - title: "Adicionar ativos"
+        payload: "/adicionar_ativos"
+      - title: "Remover ativos"
+        payload: "/remover_ativos"
+      - title: "Gerenciar notificações"
+        payload: "/gerenciar_notificacao"
+      - title: "Menu"
+        payload: "/menu"
+    button_type: vertical
+
+  utter_ativo_ativados:
+  - text: "
+      Caso prossiga, você vai parar de receber as alterações sobre os preços dos 
+      ativos, para receber novamente você precisa ativar as notificações.
+      \n
+      \nDeseja desativar as notificações de ativos?
+      "
+    buttons:
+      - title: "Sim"
+        payload: "/afirmar"
+      - title: "Não"
+        payload: "/negar"
+    button_type: vertical
+
+  utter_activate_affirm:
+  - text: "Sua notificação de ativo foi *desativada*."
+
+  utter_activate_affirm_error:
+  - text: "Ocorreu um error para *desativar* as notificações, tente novamente mais tarde."
+
+  utter_active_activate_error:
+  - text: "Ocorreu um error para *ativar* as notificações, tente novamente mais tarde."
+
+  utter_activate_negative:
+  - text: "Sua notificação de ativo *não* foi desativada."
+
+  utter_disabled_active:
+  - text: "
+      Caso prossiga, você  vai receber as alterações sobre os preços dos ativos que
+      você definiu para rastrear, para desativar é só voltar aqui novamente.
+      \n
+      \nDeseja ativar as notificações de ativos?
+      "
+    buttons:
+      - title: "Sim"
+        payload: "/afirmar"
+      - title: "Não"
+        payload: "/negar"
+    button_type: vertical
+
+  utter_remove_active_none_active:
+  - text: "Você não tem nenhum ativo cadastrado para receber notificação. Deseja cadastrar algum ativo?"
+    buttons:
+      - title: "Sim"
+        payload: "/afirmar"
+      - title: "Não"
+        payload: "/negar"
+    button_type: vertical
+
+  utter_disabled:
+  - text: "Sua notificação de ativos está *desativada*."
+
+  utter_ativo_ativados_0:
+  - text: "Sua notificação de ativos está *ativada*."
+
+  utter_active_not_activate:
+  - text: "Sua notificação de ativo *não* foi ativada."
+  
+  utter_active_activate:
+  - text: "Sua notificação de ativo foi *ativada*."
+
+  utter_disabled_not_active:
+  - text: "
+      Você não tem nenhum ativo cadastrado para receber notificação.
+      \n
+      \nDeseja cadastrar algum ativo?
+      "
+    buttons:
+      - title: "Sim"
+        payload: "/afirmar"
+      - title: "Não"
+        payload: "/negar"
+    button_type: vertical
+
+  utter_remover_ativo_sim_1:
+  - text: "Você tem os seguintes ativos:"
+
+  utter_ask_remove_active:
+  - text: "Informe o nome do ativo que você deseja remover."
+
+  utter_remove_active_response:
+  - text: "O ativo *{remove_active}* foi removido ✅"
+
+  utter_remove_active_none_response:
+  - text: "Não encontrei o nome do ativo *{remove_active}*. Deseja continuar removendo o ativos?"
+    buttons:
+      - title: "Sim"
+        payload: "/afirmar"
+      - title: "Não"
+        payload: "/negar"
+    button_type: vertical
+
+  utter_ask_name_active:
+  - text: "Qual o nome do ativo?"
+
+  utter_value_active:
+  - text: "Atualmente o ativo *{name_active}* está no valor de R$ *{value_active_pregao}*. Em qual valor você deseja ser notificado?"
+
+  utter_value_active_error:
+  - text: "
+      Valor inválido por favor informe um valor válido.
+      \n*Ex.: 106.20*.
+      \n
+      \nCaso queira sair digite *“sair”*.
+      "
+
+  utter_add_ativo_mais_de_5:
+  - text: "
+      Esse chatbot disponibiliza até 5 ativos rastreáveis, você tem 
+      mais de cinco ativos cadastrados, deseja excluir algum existente?
+      "
+    buttons:
+      - title: "Sim"
+        payload: "/afirmar"
+      - title: "Não"
+        payload: "/negar"
+    button_type: vertical
+
+  utter_add_active_fail:
+  - text: "
+      Ocorreu uma falha ao cadastrar ativo ❌
+      \n
+      \n*Obs.:* Você não consegue cadastrar o mesmo ativo mais de uma vez.
+      "
+
+  utter_add_active_success:
+  - text: "Ativo cadastrado ✅"
+
+  utter_add_active_none_response:
+  - text: "Não encontrei o valor do ativo *{name_active}*. Deseja continuar pesquisando por ativos?"
+    buttons:
+      - title: "Sim"
+        payload: "/afirmar"
+      - title: "Não"
+        payload: "/negar"
+    button_type: vertical
+
+  utter_default:
+  - text: "
+      Desculpe, não entendi o que você quis dizer. Por favor, tente reformular ou 
+      digite *“ajuda”* para receber orientações sobre como utilizar o chatbot.
+      "

@@ -18,4 +18,4 @@ RUN pip install -r requirements.txt
 COPY . ./actions
 #RUN rm -rf actions/tests
 
-ENTRYPOINT python -m rasa_sdk --actions actions
+ENTRYPOINT python -m rasa_sdk --actions actions --debug

@@ -1,6 +1,5 @@
 from fastapi import APIRouter, status, Request, Body, HTTPException, Response
 from fastapi.encoders import jsonable_encoder
-from dotenv import dotenv_values
 import requests
 import logging
 from datetime import datetime
@@ -10,8 +9,8 @@ from models.User import (
     UpdateUserTracker,
     DeletUserTracker
 )
+from ..config import YAHOO
 
-config = dotenv_values(".env")
 user = APIRouter()
 
 # Log Config
@@ -57,33 +56,39 @@ def create_user(id, request: Request, user: User = Body(...)):
     )
 def create_user_tracker(id: str, request: Request, user: UpdateUserTracker = Body(...)):
     update_data = {k: v for k, v in user.dict().items() if v is not None}
+    response = Response()
     if len(update_data) == 1:
         user = request.app.database["users"].find_one({"_id": id})
+        rastreio = user.get("rastreio")
+        for key in rastreio.keys():
+            if list(update_data.get("rastreio").keys())[0] == key:
+                response.status_code = status.HTTP_406_NOT_ACCEPTABLE
+                return response
+
         user.get("rastreio").update(update_data.get("rastreio"))
     
-    active = request.app.database["actives"].find_one({"_id": "active"})
-    update_data_keys = list(update_data["rastreio"].keys())[0]
-    if update_data_keys not in list(active.keys()):
+        active = request.app.database["actives"].find_one({"_id": "active"})
+        update_data_keys = list(update_data["rastreio"].keys())[0]
+        
         response_value = requests.get(
-            config["yahoo"]+update_data_keys+".SA?interval=1m",
+            YAHOO+update_data_keys+".SA?interval=1m",
             headers={"User-Agent": "Mozilla/5.0"}
         )
         if response_value and response_value.status_code == 200:
 
             active_value = response_value.json()["chart"]["result"][0]["meta"]["regularMarketPrice"]
-            active.update({update_data_keys: active_value})
-
-            ## Atualiza os valores dos ativos
-            request.app.database["actives"].update_one(
-                {"_id": "active"}, {"$set": active}
-            )
+            if update_data_keys not in list(active.keys()):
+                ## Atualiza os valores dos ativos
+                active.update({update_data_keys: active_value})
+                request.app.database["actives"].update_one(
+                    {"_id": "active"}, {"$set": active}
+                )
             
             ## Adiciona Ativos no rastreio do usuario
             request.app.database["users"].update_one(
                 {"_id": id}, {"$set": user}
             )
             return user
-    response = Response()
     response.status_code = status.HTTP_404_NOT_FOUND
     return response
 
@@ -98,13 +103,16 @@ def remove_user_tracker(id: str, request: Request, user: DeletUserTracker):
     update_data = {k: v for k, v in user.dict().items() if v is not None}
     if update_data:
         user = request.app.database["users"].find_one({"_id": id})
-        user.get("rastreio").pop(update_data.get("rastreio").upper())
-        request.app.database["users"].update_one(
-            {"_id": id}, {"$set": user}
-        )
-    if (exist_user := request.app.database["users"].find_one({"_id": id})) is not None:
-        return exist_user
-    return "User not found"
+        for key in user.get("rastreio").keys():
+            if update_data.get("rastreio") == key:
+                user.get("rastreio").pop(update_data.get("rastreio").upper())
+                request.app.database["users"].update_one(
+                    {"_id": id}, {"$set": user}
+                )
+                return user
+    response = Response()
+    response.status_code = status.HTTP_404_NOT_FOUND
+    return response
 
 ## Atualiza as notificações do usuario
 @user.put(
@@ -139,9 +147,8 @@ def update_actives(request: Request):
     for active in active_data.keys():
         if active == "_id":
             continue
-        yahoo = f"https://query1.finance.yahoo.com/v8/finance/chart/{active}"
         response_value = requests.get(
-            yahoo+".SA?interval=1m",
+            YAHOO+active+".SA?interval=1m",
             headers = {
                 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36',
                 'Accept-Language': 'en-US,en;q=0.9',

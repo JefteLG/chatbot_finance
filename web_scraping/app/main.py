@@ -1,10 +1,9 @@
 from fastapi import FastAPI
 from .routes import user
-from dotenv import dotenv_values
 # from motor import motor_asyncio
 from pymongo import MongoClient
+from .config import MONGO_URL
 
-config = dotenv_values(".env")
 app = FastAPI()
 
 
@@ -14,10 +13,9 @@ def read_root():
 
 @app.on_event("startup")
 def startup_db_client():
-    app.mongodb_client = MongoClient(config["MONGO_URL"])
+    app.mongodb_client = MongoClient(MONGO_URL)
     app.database = app.mongodb_client.get_default_database()
-    print(f"AAAAAAAAAAA --- {app.database}")
-    # app.mongodb_client = motor_asyncio.AsyncIOMotorClient(config["MONGO_URL"])
+    # app.mongodb_client = motor_asyncio.AsyncIOMotorClient(MONGO_URL)
     # app.database = app.mongodb_client.get_default_database()
 
 @app.on_event("shutdown")

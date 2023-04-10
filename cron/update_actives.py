@@ -2,24 +2,22 @@
 import requests
 import logging
 import traceback
-from dotenv import dotenv_values
 from pymongo import MongoClient
 from datetime import datetime
 
-config = dotenv_values(".env")
+from config import MONGO_URL
 
 # Log Config
 logging.basicConfig(format='%(levelname)s : %(message)s', level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 try:
-    string_connection = "mongodb://user:tst123@mongodb:27017/bot_invest?authSource=admin"
-    mongodb_client = MongoClient(string_connection)
+    mongodb_client = MongoClient(MONGO_URL)
     database = mongodb_client.get_default_database()
     collection = database.actives
     active_data = collection.find_one({"_id": "active"})
-
-    if active_data:
+    
+    if len(active_data) > 1:
         api = "http://web_scraping:80/active/update"
         response_value = requests.put(api)
         logger.info(f"Endpoint: {response_value.url}")

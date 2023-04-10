@@ -1,33 +1,117 @@
 version: "3.1"
 
 intents:
-  - greet
-  - goodbye
-  - affirm
-  - deny
-  - mood_great
-  - mood_unhappy
-  - bot_challenge
+  - saudar
+  - noticia
+  - start
+  - rastreio_notificacao
+  - ajuda
+  - valor_ativo
+  - afirmar
+  - negar
+  - menu
+  - gerenciar_notificacao
+  - rastrear_ativos
+  - remover_ativos
+  - adicionar_ativos
 
-responses:
-  utter_greet:
-  - text: "Hey! How are you?"
+actions:
+  - action_verify_active
+  - action_greet_init
+  - action_greet
+  - action_news_response_none
+  - action_news
+  - action_active_response_none
+  - action_active
+  - action_manage_notification
+  - action_activate_affirm
+  - action_custom_fallback
+  - action_remover_ativo
+  - action_disabled
+  - action_active_activate
+  - action_fim_remover_ativo
+  - action_reset_slots
+  - action_fim_add_active
+  - action_add_ativo
+  - action_unlikely_intent
+  - validate_active_form
+  - validate_news_form
+  - validate_remove_active_form
+  - validate_add_active_form
+  - action_ask_value_active
 
-  utter_cheer_up:
-  - text: "Here is something to cheer you up:"
-    image: "https://i.imgur.com/nGF1K8f.jpg"
+slots:
+  news:
+    type: text
+    influence_conversation: false
+    mappings:
+    - type: from_text
+      conditions:
+        - active_loop: news_form
+          requested_slot: news
 
-  utter_did_that_help:
-  - text: "Did that help you?"
+  active:
+    type: text
+    influence_conversation: false
+    mappings:
+    - type: from_text
+      conditions:
+        - active_loop: active_form
+          requested_slot: active
 
-  utter_happy:
-  - text: "Great, carry on!"
+  name_active:
+    type: text
+    influence_conversation: false
+    mappings:
+    - type: from_text
+      conditions:
+        - active_loop: add_active_form
+          requested_slot: name_active
 
-  utter_goodbye:
-  - text: "Bye"
+  value_active:
+    type: text
+    influence_conversation: false
+    mappings:
+    - type: from_text
+      conditions:
+        - active_loop: add_active_form
+          requested_slot: value_active
 
-  utter_iamabot:
-  - text: "I am a bot, powered by Rasa."
+  remove_active:
+    type: text
+    influence_conversation: false
+    mappings:
+    - type: from_text
+      conditions:
+        - active_loop: remove_active_form
+          requested_slot: remove_active
+
+  response:
+    type: text
+    influence_conversation: false
+    mappings:
+    - type: custom
+
+  value_active_pregao:
+    type: text
+    influence_conversation: false
+    mappings:
+    - type: custom
+
+forms:
+  news_form:
+    required_slots:
+      - news
+  active_form:
+    required_slots:
+      - active
+  add_active_form:
+    required_slots:
+      - name_active
+      - value_active
+  remove_active_form:
+    required_slots:
+      - remove_active
 
 session_config:
   session_expiration_time: 60
