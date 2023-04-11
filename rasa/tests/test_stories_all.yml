@@ -1,0 +1,249 @@
+version: "3.1"
+#### This file contains tests to evaluate that your bot behaves as expected.
+#### If you want to learn more, please see the docs: https://rasa.com/docs/rasa/testing-your-assistant
+
+stories:
+
+- story: init news form
+  steps:
+  - intent: noticia
+  - action: utter_news
+  - action: action_reset_slots
+  - slot_was_set:
+    - news: null
+    - active: null
+    - response: null
+    - name_active: null
+    - value_active: null
+    - remove_active: null
+  - action: news_form
+  - active_loop: news_form
+
+- story: end 1.1 INIT news form
+  steps:
+  - action: action_news_response_none
+  - intent: afirmar
+  - action: utter_news
+  - action: action_reset_slots
+  - slot_was_set:
+    - news: null
+    - active: null
+    - response: null
+    - name_active: null
+    - value_active: null
+    - remove_active: null
+  - action: news_form
+  - active_loop: news_form
+
+- story: end 1.2 END news form
+  steps:
+  - action: action_news_response_none
+  - intent: negar
+  - action: utter_menu
+
+- story: init active form
+  steps:
+  - intent: valor_ativo
+  - action: utter_active
+  - action: action_reset_slots
+  - slot_was_set:
+    - news: null
+    - active: null
+    - response: null
+    - name_active: null
+    - value_active: null
+    - remove_active: null
+  - action: active_form
+  - active_loop: active_form
+
+- story: end 1.1 INIT active form
+  steps:
+  - action: action_active_response_none
+  - intent: afirmar
+  - action: utter_active
+  - action: action_reset_slots
+  - slot_was_set:
+    - news: null
+    - active: null
+    - response: null
+    - name_active: null
+    - value_active: null
+    - remove_active: null
+  - action: active_form
+  - active_loop: active_form
+
+- story: end 1.2 END active form
+  steps:
+  - action: action_active_response_none
+  - intent: negar
+  - action: utter_menu
+
+- story: gerenciar notificacao 0
+  steps:
+  - intent: gerenciar_notificacao
+  - action: action_manage_notification
+
+- story: gerenciar notificacao 1 afirmar
+  steps:
+  - action: utter_ativo_ativados
+  - intent: afirmar
+  - action: action_activate_affirm
+  - action: utter_menu_ativos
+
+- story: gerenciar notificacao 1.2 negar
+  steps:
+  - action: utter_ativo_ativados
+  - intent: negar
+  - action: utter_activate_negative
+  - action: utter_menu_ativos
+
+- story: gerenciar notificacao 2 rastreio True afirmar
+  steps:
+  - action: utter_disabled_active
+  - intent: afirmar
+  - action: action_active_activate
+  - action: utter_menu_ativos
+
+- story: gerenciar notificacao 2 rastreio True negar
+  steps:
+  - action: utter_disabled_active
+  - intent: negar
+  - action: utter_active_not_activate
+  - action: utter_menu_ativos
+
+- story: gerenciar notificacao 2 rastreio False afirmar
+  steps:
+  - action: utter_disabled_not_active
+  - intent: afirmar
+  - action: action_reset_slots
+  - slot_was_set:
+    - news: null
+    - active: null
+    - response: null
+    - name_active: null
+    - value_active: null
+    - remove_active: null
+  - action: add_active_form
+  - active_loop: add_active_form
+
+- story: gerenciar notificacao 2 rastreio False negar
+  steps:
+  - action: utter_disabled_not_active
+  - intent: negar
+  - action: utter_menu_ativos
+
+- story: remover ativos
+  steps:
+  - intent: remover_ativos
+  - action: action_remover_ativo
+  - action: action_reset_slots
+  - slot_was_set:
+    - news: null
+    - active: null
+    - response: null
+    - name_active: null
+    - value_active: null
+    - remove_active: null
+  - action: remove_active_form
+  - active_loop: remove_active_form
+
+- story: remover ativo mais de um ativo negar
+  steps:
+  - action: utter_remove_active_none_response
+  - intent: negar
+  - action: utter_menu_ativos
+
+- story: remover ativo mais de um ativo afirmar
+  steps:
+  - action: utter_remove_active_none_response
+  - intent: afirmar
+  - action: action_remover_ativo
+  - action: action_reset_slots
+  - slot_was_set:
+    - news: null
+    - active: null
+    - response: null
+    - name_active: null
+    - value_active: null
+    - remove_active: null
+  - action: remove_active_form
+  - active_loop: remove_active_form
+
+- story: remover ativo nenhum ativo negar
+  steps:
+  - action: utter_remove_active_none_active
+  - intent: negar
+  - action: utter_menu_ativos
+
+- story: remover ativo nenhum ativo afirmar
+  steps:
+  - action: utter_remove_active_none_active
+  - intent: afirmar
+  - action: action_reset_slots
+  - slot_was_set:
+    - news: null
+    - active: null
+    - response: null
+    - name_active: null
+    - value_active: null
+    - remove_active: null
+  - action: add_active_form
+  - active_loop: add_active_form
+
+- story: add ativo mais de 5 ativos afirmar
+  steps:
+  - action: utter_add_ativo_mais_de_5
+  - intent: afirmar
+  - action: action_remover_ativo
+  - action: action_reset_slots
+  - slot_was_set:
+    - news: null
+    - active: null
+    - response: null
+    - name_active: null
+    - value_active: null
+    - remove_active: null
+  - action: remove_active_form
+  - active_loop: remove_active_form
+
+- story: add ativo mais de 5 ativos negar
+  steps:
+  - action: utter_add_ativo_mais_de_5
+  - intent: negar
+  - action: utter_menu_ativos
+
+- story: adicionar ativos
+  steps:
+  - intent: adicionar_ativos
+  - action: action_add_ativo
+  - action: action_reset_slots
+  - slot_was_set:
+    - news: null
+    - active: null
+    - response: null
+    - name_active: null
+    - value_active: null
+    - remove_active: null
+  - action: add_active_form
+  - active_loop: add_active_form
+
+- story: add ativo nao encontrado afirmar
+  steps:
+  - action: utter_add_active_none_response
+  - intent: afirmar
+  - action: action_reset_slots
+  - slot_was_set:
+    - news: null
+    - active: null
+    - response: null
+    - name_active: null
+    - value_active: null
+    - remove_active: null
+  - action: add_active_form
+  - active_loop: add_active_form
+
+- story: add ativo nao encontrado negar
+  steps:
+  - action: utter_add_active_none_response
+  - intent: negar
+  - action: utter_menu_ativos

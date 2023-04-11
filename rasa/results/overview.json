@@ -1,0 +1,11 @@
+{
+    "project": "chatbot_finance",
+    "version": "local",
+    "updated_at": "11/04/23 12:34:32",
+    "overall": 100.0,
+    "intent": 100.0,
+    "entity": null,
+    "response": 100.0,
+    "created_at": "11/04/23 12:34:32",
+    "rasa_version": "2.8.25"
+}
