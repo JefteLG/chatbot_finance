@@ -1,4 +1,3 @@
-
 # Chatbot Finance - Relatório da saúde do modelo
 ## Índice
  - [Overview](#overview)
@@ -6,8 +5,6 @@
  - [Intenções](#intention)
  - [Entidades](#entity)
  - [Respostas](#response)
-
-[Voltar para o início](../../index.md)
 
 ## Overview <a name='overview'></a>
 |Bot|Versão|Rasa|Data de criação|Data de atualização|
@@ -107,9 +104,9 @@ Aqui vão constar todas as frases confusas ou erradas do modelo.
 
 Não foram encontradas confusões ou erros de intenções nesse modelo.
 ### Histograma
-![Histograma](intent_histogram.png 'Teste')
+![Histograma](rasa/results/intent_histogram.png 'Teste')
 ### Matriz de Confusão
-![Matriz de Confusão](intent_confusion_matrix.png 'Teste')
+![Matriz de Confusão](rasa/results/intent_confusion_matrix.png 'Teste')
 
 ## Entidades <a name='entity'></a>
 Seção que aborda métricas sobre as entidades do modelo.
@@ -154,4 +151,4 @@ Tabela com as métricas das respostas do bot.
 |🟢|action_fim_add_active|100.0%|100.0%|100.0%|1|
 |🟢|action_activate_affirm|100.0%|100.0%|100.0%|1|
 ### Matriz de Confusão
-![Matriz de Confusão](story_confusion_matrix.png 'Teste')
+![Matriz de Confusão](rasa/results/story_confusion_matrix.png 'Teste')

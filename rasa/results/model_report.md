@@ -7,8 +7,6 @@
  - [Entidades](#entity)
  - [Respostas](#response)
 
-[Voltar para o início](../../index.md)
-
 ## Overview <a name='overview'></a>
 |Bot|Versão|Rasa|Data de criação|Data de atualização|
 |:-:|:-:|:-:|:-:|:-:|
